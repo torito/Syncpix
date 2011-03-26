@@ -1,0 +1,20 @@
+<ipojo xmlns="org.apache.felix.ipojo">
+	<component classname="org.torito.social.twitpic.impl.TwitPicServiceImpl"
+		name="org.torito.social.twitpic">
+		<provides>
+			<property name="twitter.screenName" field="screenName" mandatory="true" />
+		</provides>
+		<properties>
+			<property name="twitpic.apikey" field="apikey" mandatory="true" />
+			<property name="twitter.consumer-key" field="consumerKey" mandatory="true" />
+			<property name="twitter.consumer-key-secret" field="consumerKeySecret" mandatory="true" />
+			<property name="twitter.token" field="token" mandatory="true" />
+			<property name="twitter.token-secret" field="tokenSecret" mandatory="true" />
+			<property name="twitter.userId" field="userId" mandatory="true" />
+		</properties>
+		<callback transition="validate" method="start" />
+		<callback transition="invalidate" method="stop" />
+	</component>
+
+
+</ipojo>
