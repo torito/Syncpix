@@ -1,0 +1,27 @@
+<ipojo xmlns="org.apache.felix.ipojo">
+	<component classname="org.torito.social.facebook.registration.Registration"
+		name="org.torito.social.facebook.register">
+		<requires field="facebook" optional="true"/>
+		<requires field="fbFactory"
+			filter="(factory.name=org.torito.social.facebook.service)" />
+		<provides specifications="{org.torito.social.facebook.registration.Registration}">
+			<property name="osgi.command.scope" type="String" value="restfb" />
+			<property name="osgi.command.function" type="String[]"
+				value="{register,status}" />
+		</provides>
+	</component>
+
+	<component classname="org.torito.social.facebook.impl.FacebookServiceImpl"
+		name="org.torito.social.facebook.service">
+		<provides />
+		<properties>
+			<property name="facebook.apiKey"    field="apiKey" mandatory="true" />
+			<property name="facebook.secret" field="secret" mandatory="true"/>
+			<property name="facebook.sessionId" field="sessionId" mandatory="true"/>
+		</properties>
+		<callback transition="validate" method="start" />
+	</component>
+
+	<instance component="org.torito.social.facebook.register" />
+
+</ipojo>

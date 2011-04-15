@@ -1,0 +1,43 @@
+<cilia xmlns="org.apache.felix.ipojo" xmlns:cilia="fr.liglab.adele.cilia">
+
+	<processor name="facebook-processor" namespace="org.torito.social"
+		classname="org.torito.social.facebook.processor.FacebookProcessor">
+		<requires>
+			<callback type="bind" method="bindService" />
+			<calback type="unbind" method="unbindService" />
+		</requires>
+		<properties>
+			<property name="facebook.method" method="setFacebookMethod"
+				mandatory="true" value="status" /> <!-- options=status|upload -->
+			<property name="facebook.comment.location" method="setCommentLocation"
+				mandatory="true" value="data.timestamp" />
+		</properties>
+		<cilia:method name="process" data.type="fr.liglab.adele.cilia.Data" />
+	</processor>
+
+	<mediator-component name="FacebookMediator"
+		namespace="org.torito.social">
+		<scheduler name="immediate-scheduler" namespace="fr.liglab.adele.cilia" />
+		<processor name="facebook-processor" namespace="fr.liglab.adele.cilia.admin" />
+		<dispatcher name="multicast-dispatcher" namespace="fr.liglab.adele.cilia" />
+	</mediator-component>
+
+	<sender classname="org.torito.social.facebook.adapter.FacebookSender"
+		name="facebook-sender" namespace="org.torito.social">
+		<properties>
+			<property name="facebook.method" method="setFacebookMethod"
+				mandatory="true" value="status" type="java.lang.String"/> <!-- options=status|upload -->
+			<property name="facebook.comment.location" method="setCommentLocation"
+				mandatory="true" value="data.timestamp" type="java.lang.String" />
+		</properties>
+		<requires specification="org.torito.social.facebook.FacebookService">
+			<callback type="bind" method="bindService" />
+			<calback type="unbind" method="unbindService" />
+		</requires>
+	</sender>
+
+	<adapter name="facebook-adapter" pattern="out-only" namespace="org.torito.social">
+		<sender type="facebook-sender" />
+	</adapter>
+
+</cilia>

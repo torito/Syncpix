@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Export-Package: org.torito.social.facebook
+Built-By: torito
+Build-Jdk: 1.6.0_20
+Bundle-Version: 0.0.1.SNAPSHOT
+Tool: Bnd-0.0.255
+Bundle-Name: Facebook API Service
+Bnd-LastModified: 1302353511055
+Created-By: Apache Maven Bundle Plugin
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: facebook-service
+Import-Package: org.torito.social.facebook
+
