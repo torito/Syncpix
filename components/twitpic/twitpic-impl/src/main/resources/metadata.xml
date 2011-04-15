@@ -1,4 +1,27 @@
 <ipojo xmlns="org.apache.felix.ipojo">
+
+	<component classname="org.torito.social.twitpic.registration.Registration"
+		name="org.torito.social.twitpic.register">
+		<requires field="twitpic"
+			filter="(factory.name=org.torito.social.twitpic)" />
+		<provides specifications="{org.torito.social.twitpic.registration.Registration}">
+			<property name="osgi.command.scope" type="String" value="twitpic" />
+			<property name="osgi.command.function" type="String[]"
+				value="{register}" />
+		</provides>
+	</component>
+
+	<component classname="org.torito.social.twitpic.registration.TwitterRegistration"
+		name="org.torito.social.twitter.register">
+		<requires field="ifactory"
+			filter="(factory.name=org.ow2.chameleon.twitter.twitter4j)" />
+		<provides specifications="{org.torito.social.twitpic.registration.TwitterRegistration}">
+			<property name="osgi.command.scope" type="String" value="twitter" />
+			<property name="osgi.command.function" type="String[]"
+				value="{register}" />
+		</provides>
+	</component>
+
 	<component classname="org.torito.social.twitpic.impl.TwitPicServiceImpl"
 		name="org.torito.social.twitpic">
 		<provides>
@@ -15,6 +38,9 @@
 		<callback transition="validate" method="start" />
 		<callback transition="invalidate" method="stop" />
 	</component>
+
+	<instance component="org.torito.social.twitter.register"/>
+	<instance component="org.torito.social.twitpic.register"/>
 
 
 </ipojo>

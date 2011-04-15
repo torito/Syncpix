@@ -4,14 +4,14 @@
 		classname="org.torito.social.twitpic.processor.TwitPicProcessor">
 		<properties>
 			<property name="twitter.user" method="setTwitteruser"
-				mandatory="true" />
+				mandatory="true" value="*"/>
 			<property name="file.location" method="setFileLocation" value="data.content" />
 			<property name="comment.location" method="setCommentLocation" value="data.content"/>
 		</properties>
 		<cilia:method name="process" data.type="fr.liglab.adele.cilia.Data" />
 	</processor>
 
-	<mediator-component name="CiliaAdminCreator"
+	<mediator-component name="TwitPicMediator"
 		namespace="org.torito.social">
 		<scheduler name="immediate-scheduler" namespace="fr.liglab.adele.cilia" />
 		<processor name="twitpic-processor" namespace="fr.liglab.adele.cilia.admin" />
@@ -22,7 +22,7 @@
 		name="twitpic-sender" namespace="org.torito.social">
 		<properties>
 			<property name="twitter.user" method="setTwitteruser"
-				mandatory="true" type="String"/>
+				mandatory="true" type="String" value="*"/>
 			<property name="file.location" method="setFileLocation" value="data.content" type="String" />
 			<property name="comment.location" method="setCommentLocation" value="data.content" type="String"/>
 		</properties>

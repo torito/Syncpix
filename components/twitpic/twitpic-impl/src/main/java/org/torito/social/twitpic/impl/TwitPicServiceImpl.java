@@ -53,6 +53,8 @@ public class TwitPicServiceImpl implements TwitPicService{
 	 * @see org.torito.social.twitpic.TwitPicService#uploadMedia(java.io.File, java.lang.String)
 	 */
 
+	private void stop (){}
+	
 	public MediaInfo uploadMedia(File file) {
 		return uploadMedia(file, null);
 	}

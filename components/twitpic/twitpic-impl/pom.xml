@@ -18,16 +18,21 @@
 	<name>TwitPic Service Implementation based on Twitter4j</name>
 
 	<dependencies>
-		<dependency>     
-			<groupId>org.torito.social.syncpix</groupId>     
+		<dependency>
+			<groupId>org.torito.social.syncpix</groupId>
 			<artifactId>twitpic-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version> 
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-      <dependency>
-         <groupId>org.twitter4j</groupId>
-         <artifactId>twitter4j-core</artifactId>
-         <version>2.1.4</version>
-      </dependency>
+		<dependency>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-core</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.ipojo</artifactId>
+			<version>1.6.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -41,6 +46,7 @@
 					<instructions>
 						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
 						<Private-Package>org.torito.social.twitpic.impl</Private-Package>
+						<Export-Package>org.torito.social.twitpic.registration</Export-Package>
 						<Import-Package>
 							*
 						</Import-Package>
