@@ -1,0 +1,25 @@
+<ipojo xmlns="org.apache.felix.ipojo">
+
+	<component classname="org.torito.social.system.tray.impl.SysTrayManager"
+		name="org.torito.social.system.try.register">
+		<callback transition="validate" method="start" />
+		<callback transition="invalidate" method="stop" />
+	</component>
+
+	<instance component="org.torito.social.system.try.register" />
+
+
+	<component classname="org.torito.social.system.tray.impl.SysTrayTest"
+		name="systrayTest">
+		<provides>
+			<property name="systray.name" type="String" value="cilia" />
+			<property name="systray.icon" type="String" value="tray.gif" />
+			<property name="systray.items" type="String[]"
+				value="{create,|,show,load}" />
+		</provides>
+	</component>
+
+	<instance component="systrayTest" />
+
+
+</ipojo>
