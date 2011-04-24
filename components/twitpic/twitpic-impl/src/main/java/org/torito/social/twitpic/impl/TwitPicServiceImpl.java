@@ -3,6 +3,7 @@ package org.torito.social.twitpic.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.torito.social.twitpic.CommentsInfo;
@@ -114,6 +115,33 @@ public class TwitPicServiceImpl implements TwitPicService{
 	public void deleteComment(String id) {
 		// TODO Auto-generated method stub
 
+	}
+
+	/* (non-Javadoc)
+	 * @see org.torito.social.twitpic.TwitPicService#uploadMedia(java.io.InputStream)
+	 */
+	public MediaInfo uploadMedia(InputStream is) {
+		return uploadMedia(is, null);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.torito.social.twitpic.TwitPicService#uploadMedia(java.io.InputStream, java.lang.String)
+	 */
+	public MediaInfo uploadMedia(InputStream file, String message) {
+		String imageurl = null;
+		try {
+			if (message != null) {
+				imageurl = upload.upload("syncpix.jpg", file, message);
+			} else {
+				imageurl = upload.upload(null,file);
+			}
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		}
+		MediaInfo mi = new MediaInfo();
+		mi.setMessage(message);
+		mi.setLocation(imageurl);
+		return mi;
 	}
 
 

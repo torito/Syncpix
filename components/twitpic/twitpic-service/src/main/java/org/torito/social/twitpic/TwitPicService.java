@@ -1,6 +1,9 @@
 package org.torito.social.twitpic;
 
 import java.io.File;
+import java.io.InputStream;
+
+import org.xml.sax.InputSource;
 
 
 /**
@@ -11,7 +14,11 @@ public interface TwitPicService {
 
 	public MediaInfo uploadMedia(File fileuri);
 	
+	public MediaInfo uploadMedia(InputStream is);
+	
 	public MediaInfo uploadMedia(File file, String message);
+	
+	public MediaInfo uploadMedia(InputStream  file, String message);
 
 	/**
 	 * This method returns information on a specified image or video.
